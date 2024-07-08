@@ -2,7 +2,12 @@ from abc import ABC, abstractmethod
 from typing import List, Dict, Optional, Union, Tuple
 
 from matplotlib.figure import Figure
-from matplotlib.axes._subplots import SubplotBase
+try:
+    # Matplotlib < 3.7
+    from matplotlib.axes._subplots import SubplotBase
+except ModuleNotFoundError:
+    # Matplotlib > 3.7
+    from matplotlib.axes import SubplotBase
 from matplotlib.pyplot import subplots
 from pandas import DataFrame, date_range, DatetimeIndex
 from pandas._libs.tslibs.timestamps import Timestamp
